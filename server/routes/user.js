@@ -3,10 +3,11 @@ const router = express.Router()
 const db = require('../config/db')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const checkUser = require('../middlewares/checkUser')
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', checkUser, async (req, res) => {
   const { username, password, email } = req.body
-
+  const { isUsed } = req
   const salt = 10
   const passwordHash = await bcrypt.hash(password, salt)
   const newUser = [

@@ -2,6 +2,7 @@ import { Badge, Button, Icon, Tbody, Td, Tr } from '@chakra-ui/react'
 
 import { MdDeleteOutline } from 'react-icons/md'
 import React from 'react'
+import { ModaEdit } from './modal/ModalEdit'
 
 function SignleMovement() {
   return (
@@ -23,7 +24,7 @@ function SignleMovement() {
             _hover={{ bg: 'gray.500' }}>
             <Icon color={'white'} as={MdDeleteOutline} />
           </Button>
-          <Button>Delete</Button>
+          <ModaEdit />
         </Td>
       </Tr>
     </Tbody>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Table, Th, Thead, Tr } from '@chakra-ui/react'
+import SignleMovement from './SingleMovement'
 
 function TableMovements() {
   return (
@@ -17,6 +18,7 @@ function TableMovements() {
             <Th>Movements</Th>
           </Tr>
         </Thead>
+        <SignleMovement />
       </Table>
     </Box>
   )

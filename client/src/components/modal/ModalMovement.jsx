@@ -14,8 +14,10 @@ import {
   Select
 } from '@chakra-ui/react'
 import { useRef } from 'react'
+import { useBalance } from '../../context/BalanceContext'
 
 export function ModalMovement() {
+  const { addMovement } = useBalance()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const descriptionRef = useRef()
   const amountRef = useRef()
@@ -24,6 +26,13 @@ export function ModalMovement() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    addMovement({
+      description: descriptionRef.current.value,
+      amount: amountRef.current.valueAsNumber,
+      category: categoryRef.current.value,
+      type: typeRef.current.value
+    })
+
     onClose()
   }
 

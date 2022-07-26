@@ -14,13 +14,16 @@ import {
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { error, login, loading } = useAuth()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    login('http://localhost:4001/user/signin', { email, password })
   }
 
   return (
@@ -53,9 +56,27 @@ function SignIn() {
               <Input type="password" onChange={(e) => setPassword(e.target.value)} required />
             </FormControl>
             <Box w={'100%'}>
-              <Button type="submit" bg="purple.400" w={'100%'} color={'white'} mt={6}>
-                Sign in
-              </Button>
+              {error && (
+                <Text mt={'1rem'} color={'red.500'} fontSize="12px">
+                  {error}
+                </Text>
+              )}
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Sign in"
+                  type="submit"
+                  bg="purple.400"
+                  w={'100%'}
+                  color={'white'}
+                  mt={6}>
+                  Sign in
+                </Button>
+              ) : (
+                <Button type="submit" bg="purple.400" w={'100%'} color={'white'} mt={6}>
+                  Sign in
+                </Button>
+              )}
             </Box>
           </form>
         </VStack>

@@ -32,7 +32,7 @@ function AuthProvider({ children }) {
     localStorage.setItem('user', JSON.stringify(user))
   }, [user])
 
-  const loggin = (url, user) => {
+  const login = (url, user) => {
     setLoading(true)
     axios
       .post(url, user)
@@ -59,7 +59,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, error, loading, loggin, setUser }}>
+    <AuthContext.Provider value={{ user, error, loading, login, setUser }}>
       {children}
     </AuthContext.Provider>
   )

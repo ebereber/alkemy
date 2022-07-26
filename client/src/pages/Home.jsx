@@ -14,12 +14,16 @@ import {
   Heading,
   Text,
   HStack,
-  Stack
+  Stack,
+  Icon
 } from '@chakra-ui/react'
 import TableMovements from '../components/table/TableMovements'
 import { ModalMovement } from '../components/modal/ModalMovement'
+import { useBalance } from '../context/BalanceContext'
+import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi'
 
 function Home() {
+  const { balance } = useBalance()
   return (
     <>
       <Box float={'right'} padding="1rem">
@@ -71,19 +75,32 @@ function Home() {
           </Flex>
           <Heading>Hi ! Username </Heading>
           <Text>Your balance today</Text>
-          <Text>Add a movement to start </Text>
+          {balance === 0 ? (
+            <Text>Add a movement to start </Text>
+          ) : (
+            <>
+              {' '}
+              <Box borderRadius=".5rem">
+                {balance < 0 ? (
+                  <Icon as={FiTrendingDown} fontSize="2.5rem" color={'black'} />
+                ) : (
+                  <Icon as={FiTrendingUp} fontSize="2.5rem" color={'black'} />
+                )}
+              </Box>
+              <Stack
+                h="100px"
+                w="250px"
+                justify={'center'}
+                align="center"
+                borderRadius=".5rem"
+                boxShadow={'base'}>
+                <HStack>
+                  <Heading>${balance}</Heading>
+                </HStack>
+              </Stack>
+            </>
+          )}
 
-          <Stack
-            h="100px"
-            w="250px"
-            justify={'center'}
-            align="center"
-            borderRadius=".5rem"
-            boxShadow={'base'}>
-            <HStack>
-              <Heading>$300</Heading>
-            </HStack>
-          </Stack>
           <ModalMovement />
           <TableMovements />
         </VStack>

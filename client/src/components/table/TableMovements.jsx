@@ -1,8 +1,11 @@
 import React from 'react'
 import { Box, Table, Th, Thead, Tr } from '@chakra-ui/react'
 import SignleMovement from './SingleMovement'
+import { useBalance } from '../../context/BalanceContext'
 
 function TableMovements() {
+  const { movements, deleteMovement, editMovement } = useBalance()
+
   return (
     <Box w="full" p={50}>
       <Table size="sm">
@@ -18,7 +21,16 @@ function TableMovements() {
             <Th>Movements</Th>
           </Tr>
         </Thead>
-        <SignleMovement />
+        {[...movements].reverse().map((movement) => (
+          /* // DESKTOP-------------------------------- */
+
+          <SignleMovement
+            key={movement.id}
+            movement={movement}
+            deleteMovement={deleteMovement}
+            editMovement={editMovement}
+          />
+        ))}
       </Table>
     </Box>
   )

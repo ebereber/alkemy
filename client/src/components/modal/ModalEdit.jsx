@@ -17,17 +17,27 @@ import {
 import { useRef, useState } from 'react'
 
 import { FiEdit2 } from 'react-icons/fi'
+import { useBalance } from '../../context/BalanceContext'
 
-export function ModaEdit() {
+export function ModalEdit({ movement }) {
+  const { id } = movement
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef(null)
   const finalRef = useRef(null)
-  const [description, setDescription] = useState()
-  const [amount, setAmount] = useState()
-  const [category, setCategory] = useState()
+  const [description, setDescription] = useState(movement.description)
+  const [amount, setAmount] = useState(movement.amount)
+  const [category, setCategory] = useState(movement.category)
+  const { editMovement } = useBalance()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    editMovement({
+      id,
+      description,
+      amount,
+      category
+    })
   }
 
   return (

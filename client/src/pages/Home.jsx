@@ -17,12 +17,13 @@ import {
   Stack
 } from '@chakra-ui/react'
 import TableMovements from '../components/table/TableMovements'
+import { ModalMovement } from '../components/table/modal/ModalMovement'
 
 function Home() {
   return (
     <>
       <Box float={'right'} padding="1rem">
-        <Menu position="sticky" left="0" top="0">
+        <Menu position="relative">
           <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
             <Avatar
               size={'sm'}
@@ -83,6 +84,7 @@ function Home() {
               <Heading>$300</Heading>
             </HStack>
           </Stack>
+          <ModalMovement />
           <TableMovements />
         </VStack>
       </Center>

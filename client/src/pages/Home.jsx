@@ -17,7 +17,7 @@ import {
   Stack
 } from '@chakra-ui/react'
 import TableMovements from '../components/table/TableMovements'
-import { ModalMovement } from '../components/table/modal/ModalMovement'
+import { ModalMovement } from '../components/modal/ModalMovement'
 
 function Home() {
   return (

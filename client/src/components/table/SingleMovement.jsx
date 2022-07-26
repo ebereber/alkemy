@@ -2,7 +2,7 @@ import { Badge, Button, Icon, Tbody, Td, Tr } from '@chakra-ui/react'
 
 import { MdDeleteOutline } from 'react-icons/md'
 import React from 'react'
-import { ModaEdit } from './modal/ModalEdit'
+import { ModaEdit } from '../modal/ModalEdit'
 
 function SignleMovement() {
   return (

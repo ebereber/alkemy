@@ -10,12 +10,27 @@ export const useAuth = () => {
 
 const userLocalStorage = JSON.parse(localStorage.getItem('user') || 'null')
 
-axios.interceptors.request.use(
+/* axios.interceptors.request.use(
   (config) => {
     config.headers.authorization = `Bearer ${userLocalStorage}`
     return config
   },
   (error) => {
+    return Promise.reject(error)
+  }
+) */
+axios.interceptors.request.use(
+  (config) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    if (user) {
+      config.headers.Authorization = `Bearer ${user}`
+    }
+    console.log('request config', config)
+    return config
+  },
+  (error) => {
+    // console.log("request error", error);
     return Promise.reject(error)
   }
 )
@@ -27,7 +42,6 @@ function AuthProvider({ children }) {
 
   const navigate = useNavigate()
 
-  console.log(user)
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(user))
   }, [user])

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, createContext, useContext, useEffect } from 'react'
 
+import { useAuth } from './AuthContext'
 const BalanceContext = createContext()
 
 export const useBalance = () => {
@@ -11,22 +12,29 @@ function BalanceProvider({ children }) {
   const [balance, setBalance] = useState(0)
   const [movements, setMovements] = useState([])
 
+  const { user } = useAuth()
+
   const date = new Date()
   const day = date.getDate()
   const month = date.getMonth()
   const year = date.getFullYear()
   const fullDate = `${day}/${month}/${year}`
-
-  const getMovements = () => {
-    axios.get('http://localhost:4001/movements').then((res) => {
-      console.log(res.data)
-      setMovements(res.data)
-    })
-  }
+  console.log(movements)
 
   useEffect(() => {
-    getMovements()
-  }, [])
+    if (user) {
+      getMovements()
+    }
+  }, [user])
+
+  const getMovements = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:4001/movements')
+      setMovements(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const addMovement = ({ description, category, amount, type }) => {
     axios
@@ -76,7 +84,8 @@ function BalanceProvider({ children }) {
 
   return (
     <BalanceContext.Provider
-      value={{ balance, movements, addMovement, deleteMovement, editMovement }}>
+      value={{ balance, movements, addMovement, deleteMovement, editMovement }}
+    >
       {children}
     </BalanceContext.Provider>
   )

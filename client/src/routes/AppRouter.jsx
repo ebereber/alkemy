@@ -5,6 +5,7 @@ import BalanceProvider from '../context/BalanceContext'
 import Home from '../pages/Home'
 import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
+import ProtectRoute from './ProtectRoute'
 
 function AppRouter() {
   return (
@@ -12,7 +13,15 @@ function AppRouter() {
       <AuthProvider>
         <BalanceProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <ProtectRoute>
+                  <Home />
+                </ProtectRoute>
+              }
+            />
+
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>

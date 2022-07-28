@@ -11,7 +11,16 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Select
+  Select,
+  HStack,
+  Box,
+  Image,
+  Stack,
+  Center,
+  RadioGroup,
+  Radio,
+  Icon,
+  useRadioGroup
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { useBalance } from '../../context/BalanceContext'
@@ -42,43 +51,57 @@ export function ModalMovement() {
         +
       </Button>
 
-      <Modal
-        /* initialFocusRef={initialRef}
-          finalFocusRef={finalRef} */
-        isOpen={isOpen}
-        onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
+
         <ModalContent>
           <form onSubmit={handleSubmit}>
-            <ModalHeader>Add Movement</ModalHeader>
+            <ModalHeader textAlign={'center'}>Add Movement</ModalHeader>
+            <Center>
+              <Box boxSize="4rem">
+                <Image src="https://cdn-icons-png.flaticon.com/512/7225/7225882.png" />
+              </Box>
+            </Center>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
-                <FormLabel>Description</FormLabel>
-                <Input ref={descriptionRef} required />
+                <Input
+                  placeholder="Description"
+                  ref={descriptionRef}
+                  required
+                  size="sm"
+                  variant="flushed"
+                  focusBorderColor="black"
+                />
               </FormControl>
+              <HStack mt={4}>
+                <FormControl>
+                  <Input
+                    placeholder="Amount"
+                    type="number"
+                    ref={amountRef}
+                    required
+                    size="sm"
+                    variant="flushed"
+                    focusBorderColor="black"
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <Select ref={categoryRef} size="sm" variant="flushed" focusBorderColor="black">
+                    <option value="Shops">Shops</option>
+                    <option value="Services">Services</option>
+                    <option value="Health and sport">Health and sport</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Restaurant and bars">Reastaurant and bars</option>
+                    <option value="Other">Other</option>
+                  </Select>
+                </FormControl>
+              </HStack>
 
               <FormControl mt={4}>
-                <FormLabel>Amount</FormLabel>
-                <Input type="number" ref={amountRef} required />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Category</FormLabel>
-                <Select ref={categoryRef}>
-                  <option value="Shops">Shops</option>
-                  <option value="Services">Services</option>
-                  <option value="Health and sport">Health and sport</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Transportation">Transportation</option>
-                  <option value="Restaurant and bars">Reastaurant and bars</option>
-                  <option value="Other">Other</option>
-                </Select>
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Type</FormLabel>
-                <Select ref={typeRef}>
+                <Select ref={typeRef} size="sm" variant="flushed" focusBorderColor="black">
                   <option value="expense">Expense</option>
                   <option value="income">Income</option>
                 </Select>
@@ -86,7 +109,13 @@ export function ModalMovement() {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} type="submit">
+              <Button
+                bg="black"
+                _hover={{ bg: 'blackAlpha.800' }}
+                mr={3}
+                type="submit"
+                color={'white'}
+              >
                 Add
               </Button>
               <Button onClick={onClose}>Cancel</Button>

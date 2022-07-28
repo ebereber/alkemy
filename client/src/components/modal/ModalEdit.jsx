@@ -12,7 +12,11 @@ import {
   ModalOverlay,
   useDisclosure,
   Select,
-  Icon
+  Icon,
+  Center,
+  Box,
+  Image,
+  HStack
 } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 
@@ -50,45 +54,73 @@ export function ModalEdit({ movement }) {
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
-        onClose={onClose}>
+        onClose={onClose}
+      >
         <ModalOverlay />
         <ModalContent>
           <form onSubmit={handleSubmit}>
-            <ModalHeader>Edit movement</ModalHeader>
+            <ModalHeader textAlign={'center'}>Edit movement</ModalHeader>
+            <Center>
+              <Box boxSize="4rem">
+                <Image src="https://cdn-icons-png.flaticon.com/512/994/994429.png" />
+              </Box>
+            </Center>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Description</FormLabel>
+              <FormControl mt={6}>
                 <Input
                   value={description}
                   required
                   onChange={(e) => setDescription(e.target.value)}
                   ref={initialRef}
+                  size="sm"
+                  variant="flushed"
+                  placeholder="Description"
+                  focusBorderColor="black"
                 />
               </FormControl>
+              <HStack mt={4}>
+                <FormControl>
+                  <Input
+                    size="sm"
+                    variant="flushed"
+                    placeholder="Amount"
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    focusBorderColor="black"
+                  />
+                </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel>Amount</FormLabel>
-                <Input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Category</FormLabel>
-
-                <Select value={category} onChange={(e) => setCategory(e.target.value)}>
-                  <option value="shops">Shops</option>
-                  <option value="services">Services</option>
-                  <option value="health and sport">Health and sport</option>
-                  <option value="entertainment">Entertainment</option>
-                  <option value="transportation">Transportation</option>
-                  <option value="restaurant and bars">Reastaurant and bars</option>
-                  <option value="other">Other</option>
-                </Select>
-              </FormControl>
+                <FormControl>
+                  <Select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    size="sm"
+                    variant="flushed"
+                    focusBorderColor="black"
+                  >
+                    <option value="shops">Shops</option>
+                    <option value="services">Services</option>
+                    <option value="health and sport">Health and sport</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="restaurant and bars">Reastaurant and bars</option>
+                    <option value="other">Other</option>
+                  </Select>
+                </FormControl>
+              </HStack>
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} type="submit" onClick={onClose}>
+              <Button
+                bg="black"
+                _hover={{ bg: 'blackAlpha.800' }}
+                mr={3}
+                type="submit"
+                onClick={onClose}
+                color={'white'}
+              >
                 Edit
               </Button>
               <Button onClick={onClose}>Cancel</Button>

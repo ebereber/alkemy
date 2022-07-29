@@ -1,11 +1,12 @@
 const mysql = require('mysql')
 const { promisify } = require('util')
+require('dotenv').config()
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '1234',
-  database: 'alkemy'
+  host: process.env.HOST,
+  user: process.env.USER_DB,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
 })
 db.connect((err) => {
   if (err) {

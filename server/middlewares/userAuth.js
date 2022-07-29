@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 
 const userAuth = (req, res, next) => {
   const authorization = req.get('authorization')
-  console.log(authorization)
 
   let token = ''
 
@@ -11,7 +10,7 @@ const userAuth = (req, res, next) => {
     token = authorization.substring(7)
   }
 
-  const decodedToken = jwt.verify(token, '123')
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
 
   if (!token || !decodedToken.id) {
     return res.status(401).json({ error: 'Token missing or invalid' })

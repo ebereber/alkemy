@@ -34,7 +34,7 @@ router.post('/signup', checkUser, async (req, res) => {
                 email: result[0].email
               }
 
-              const token = jwt.sign(userForToken, '123')
+              const token = jwt.sign(userForToken, process.env.JWT_SECRET)
 
               return res.json({
                 username: result[0].username,
@@ -45,29 +45,16 @@ router.post('/signup', checkUser, async (req, res) => {
           })
       })
   }
-
-  /* await db.query('INSERT INTO users (username, email, password) VALUES(?,?,?)', newUser,
-    (err, result) => {
-      if (err) {
-        res.json({ status: 'Error' })
-      } else {
-        const userForToken = { id: newUser.id, username: newUser.username }
-        const token = jwt.sign(userForToken, '123')
-        res.status(200).json({ token })
-      }
-    }) */
 })
 
 router.post('/signin', async (req, res) => {
   const { email, password } = req.body
-  console.log(email, password)
 
   const user = await db.query('SELECT * FROM  users WHERE email = ? ', [email])
-  console.log(user)
+
   const correctPassword = user[0] === undefined
     ? false
     : await bcrypt.compare(password, user[0].password)
-  console.log(correctPassword)
 
   if (!(user[0] && correctPassword)) {
     return res.status(401).json({ error: 'Invalid email or password' })
@@ -78,7 +65,7 @@ router.post('/signin', async (req, res) => {
     email: user[0].email
   }
 
-  const token = jwt.sign(userForToken, '123')
+  const token = jwt.sign(userForToken, process.env.JWT_SECRET)
 
   res.send({
     username: user[0].username,

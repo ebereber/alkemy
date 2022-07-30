@@ -4,7 +4,6 @@ import {
   Center,
   Divider,
   FormControl,
-  FormLabel,
   Heading,
   HStack,
   Image,
@@ -52,8 +51,8 @@ function SignUp() {
             </HStack>
 
             <VStack pb="28px" fontWeight={'400'}>
-              <Text>Welcome to your balance!</Text>
-              <Text></Text>
+              <Text>Nice to meet you!</Text>
+              <Text>Sign Up for a Free account.</Text>
             </VStack>
           </VStack>
           <form onSubmit={handleSubmit}>
@@ -90,7 +89,7 @@ function SignUp() {
             </FormControl>
             <Box w={'100%'} pb="28px">
               {error && (
-                <Text mt={'1rem'} color={'red.500'} fontSize="12px">
+                <Text mt={'1rem'} pb="12px" color={'red.500'} textAlign="center" fontSize="12px">
                   {error}
                 </Text>
               )}
@@ -112,7 +111,7 @@ function SignUp() {
               )}
             </Box>
             <HStack fontSize={'13px'}>
-              <Text as={'span'}> Don`t have an account?</Text>
+              <Text as={'span'}> Already registered?</Text>
               <LinkBox
                 textDecoration="underline"
                 color={'black'}

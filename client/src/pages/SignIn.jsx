@@ -4,7 +4,6 @@ import {
   Center,
   Divider,
   FormControl,
-  FormLabel,
   Heading,
   HStack,
   Image,
@@ -80,7 +79,7 @@ function SignIn() {
             </FormControl>
             <Box w={'100%'} pb="28px">
               {error && (
-                <Text mt={'1rem'} color={'red.500'} fontSize="12px">
+                <Text mt={'1rem'} pb="12px" color={'red.500'} textAlign="center" fontSize="12px">
                   {error}
                 </Text>
               )}
@@ -102,7 +101,7 @@ function SignIn() {
               )}
             </Box>
             <HStack fontSize={'13px'}>
-              <Text as={'span'}> Don`t have an account?</Text>
+              <Text as={'span'}> Don't have an account?</Text>
               <LinkBox
                 textDecoration="underline"
                 color={'black'}
@@ -134,25 +133,3 @@ function SignIn() {
 }
 
 export default SignIn
-
-/*
-<Stack
-align={'center'}
-spacing={{ base: 8, md: 10 }}
-py={{ base: 20, md: 28 }}
-direction={{ base: 'column', md: 'row' }}
->
-    <Heading
-    lineHeight={1.1}
-    fontWeight={600}
-    fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}>
-    <Text>
-    Money Managment
-    </Text>
-
-    <Text as={'span'} color={'grey'} fontSize={'1rem'}>
-    Money Managment is an on-chain perpetual futures DEX with deep liquidity and builder-ready composability.
-    </Text>
-</Heading>
-
-</Stack> */

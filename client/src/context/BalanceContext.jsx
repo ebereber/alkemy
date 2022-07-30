@@ -19,7 +19,6 @@ function BalanceProvider({ children }) {
   const month = date.getMonth()
   const year = date.getFullYear()
   const fullDate = `${day}/${month}/${year}`
-  console.log(movements)
 
   useEffect(() => {
     if (user) {
@@ -55,7 +54,6 @@ function BalanceProvider({ children }) {
     axios
       .delete('http://localhost:4001/movements/delete', { data: { id } })
       .then((res) => {
-        console.log(res)
         getMovements()
       })
       .catch((err) => console.log(err))
@@ -69,7 +67,6 @@ function BalanceProvider({ children }) {
       })
       .catch((err) => console.log(err))
   }
-  /*  setMovements(movements.map(movement => movement.id === id ? updateMovement : movement)) */
 
   useEffect(() => {
     if (movements.length > 0) {

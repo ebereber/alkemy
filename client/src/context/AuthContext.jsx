@@ -26,7 +26,7 @@ axios.interceptors.request.use(
     if (user) {
       config.headers.Authorization = `Bearer ${user}`
     }
-    console.log('request config', config)
+    /* console.log('request config', config) */
     return config
   },
   (error) => {
@@ -39,7 +39,6 @@ function AuthProvider({ children }) {
   const [user, setUser] = useState(userLocalStorage)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-
   const navigate = useNavigate()
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { Box, Table, Th, Thead, Tr } from '@chakra-ui/react'
 import SignleMovement from './SingleMovement'
 import { useBalance } from '../../context/BalanceContext'

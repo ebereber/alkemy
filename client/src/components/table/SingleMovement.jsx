@@ -4,6 +4,8 @@ import { MdDeleteOutline } from 'react-icons/md'
 import React from 'react'
 import { ModalEdit } from '../modal/ModalEdit'
 import { getColor } from '../../utils/getColor'
+import { AlertDelete } from '../modal/AlertDelete'
+import { currencyFormater } from '../../utils/currencyFormatter'
 
 function SignleMovement({ deleteMovement, movement }) {
   const { id, description, date, amount, category, type } = movement
@@ -24,18 +26,11 @@ function SignleMovement({ deleteMovement, movement }) {
             {description}
           </Td>
           <Td fontWeight={'medium'} color={type !== 'expense' ? 'green' : 'red'}>
-            ${amount}
+            {currencyFormater.format(amount)}
           </Td>
           <Td>
             <HStack>
-              <Button
-                bg="gray.600"
-                mr={'1rem'}
-                _hover={{ bg: 'gray.500' }}
-                onClick={() => deleteMovement(id)}
-              >
-                <Icon color={'white'} as={MdDeleteOutline} />
-              </Button>
+              <AlertDelete movement={movement} deleteMovement={deleteMovement} />
               <ModalEdit movement={movement} />
             </HStack>
           </Td>
@@ -63,14 +58,7 @@ function SignleMovement({ deleteMovement, movement }) {
           </Td>
 
           <Td p="0">
-            <Button
-              bg="gray.600"
-              mr={'1rem'}
-              _hover={{ bg: 'gray.500' }}
-              onClick={() => deleteMovement(id)}
-            >
-              <Icon color={'white'} as={MdDeleteOutline} />
-            </Button>
+            <AlertDelete movement={movement} deleteMovement={deleteMovement} />
             <ModalEdit movement={movement} mb={{ base: '1rem' }} />
           </Td>
         </Tr>

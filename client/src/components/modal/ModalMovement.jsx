@@ -47,7 +47,7 @@ export function ModalMovement() {
 
   return (
     <>
-      <Button onClick={onOpen} bg={'black'} color={'white'}>
+      <Button onClick={onOpen} bg={'black'} color={'white'} _hover={{ bg: 'blackAlpha.800' }}>
         +
       </Button>
 
@@ -84,6 +84,7 @@ export function ModalMovement() {
                     size="sm"
                     variant="flushed"
                     focusBorderColor="black"
+                    step="any"
                   />
                 </FormControl>
 

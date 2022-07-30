@@ -25,7 +25,7 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    login('http://localhost:4001/user/signup', { username, email, password })
+    login('https://mymovements-api.herokuapp.com/user/signup', { username, email, password })
   }
 
   return (

@@ -28,7 +28,7 @@ function BalanceProvider({ children }) {
 
   const getMovements = async () => {
     try {
-      const { data } = await axios.get('https://mymovements-api.herokuapp.com/movements')
+      const { data } = await axios.get('http://localhost:4001/movements')
       setMovements(data)
     } catch (err) {
       console.log(err)
@@ -37,7 +37,7 @@ function BalanceProvider({ children }) {
 
   const addMovement = ({ description, category, amount, type }) => {
     axios
-      .post('https://mymovements-api.herokuapp.com/movements/create', {
+      .post('http://localhost:4001/movements/create', {
         description,
         category,
         amount,
@@ -52,7 +52,7 @@ function BalanceProvider({ children }) {
 
   const deleteMovement = (id) => {
     axios
-      .delete('https://mymovements-api.herokuapp.com/movements/delete', { data: { id } })
+      .delete('http://localhost:4001/movements/delete', { data: { id } })
       .then((res) => {
         getMovements()
       })
@@ -61,7 +61,7 @@ function BalanceProvider({ children }) {
 
   const editMovement = (updateMovement) => {
     axios
-      .put('https://mymovements-api.herokuapp.com/movements/update', updateMovement)
+      .put('http://localhost:4001/movements/update', updateMovement)
       .then((res) => {
         getMovements()
       })

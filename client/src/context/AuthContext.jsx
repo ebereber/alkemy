@@ -48,7 +48,7 @@ function AuthProvider({ children }) {
   const login = (url, user) => {
     setLoading(true)
     axios
-      .post(url, user)
+      .post(`http://localhost:4001/user${url}`, user)
       .then((res) => {
         const credentials = res.data
         setUser(credentials.token)

@@ -1,6 +1,5 @@
 import { Box, Heading, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi'
-import { useAuth } from '../../context/AuthContext'
 import { useBalance } from '../../context/BalanceContext'
 import { currencyFormater } from '../../utils/currencyFormatter'
 

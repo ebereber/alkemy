@@ -1,17 +1,7 @@
-import {
-  Avatar,
-  Button,
-  Flex,
-  Icon,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList
-} from '@chakra-ui/react'
+import { Avatar, Button, Flex, Icon, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import React from 'react'
-import { CgProfile } from 'react-icons/cg'
-import { FiSettings, FiLogOut } from 'react-icons/fi'
+
+import { FiLogOut } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
@@ -37,16 +27,6 @@ function NavMenu() {
           />
         </MenuButton>
         <MenuList alignItems={'center'}>
-          {/* <MenuItem>
-            <Icon as={CgProfile} mr="1rem" />
-            Profile
-          </MenuItem>
-          <MenuItem>
-            <Icon as={FiSettings} mr="1rem" />
-            Account Setting
-          </MenuItem>
-
-          <MenuDivider /> */}
           <MenuItem onClick={() => handleLoggout()}>
             {' '}
             <Icon as={FiLogOut} mr="1rem" />

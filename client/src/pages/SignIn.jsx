@@ -95,7 +95,13 @@ function SignIn() {
                   Sign in
                 </Button>
               ) : (
-                <Button type="submit" bg="black" w={'100%'} color={'white'}>
+                <Button
+                  type="submit"
+                  bg="black"
+                  w={'100%'}
+                  color={'white'}
+                  _hover={{ bg: 'blackAlpha.800' }}
+                >
                   Sign in
                 </Button>
               )}

@@ -2,7 +2,6 @@ import {
   Modal,
   Button,
   FormControl,
-  FormLabel,
   Input,
   ModalCloseButton,
   ModalContent,

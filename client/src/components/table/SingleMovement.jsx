@@ -1,6 +1,4 @@
-import { Badge, Button, HStack, Icon, Tbody, Td, Text, Tr, VStack } from '@chakra-ui/react'
-
-import { MdDeleteOutline } from 'react-icons/md'
+import { Badge, HStack, Tbody, Td, Text, Tr, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { ModalEdit } from '../modal/ModalEdit'
 import { getColor } from '../../utils/getColor'

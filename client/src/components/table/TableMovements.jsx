@@ -22,8 +22,6 @@ function TableMovements() {
           </Tr>
         </Thead>
         {[...movements].reverse().map((movement) => (
-          /* // DESKTOP-------------------------------- */
-
           <SignleMovement
             key={movement.id}
             movement={movement}

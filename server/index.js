@@ -7,7 +7,9 @@ const app = express()
 
 app.use(express.json())
 app.use(cors())
-
+app.get('/', (req, res) => {
+  res.send('Movements api')
+})
 app.use('/user', userRouter)
 app.use('/movements', movementsRouter)
 

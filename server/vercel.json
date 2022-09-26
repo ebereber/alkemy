@@ -8,6 +8,12 @@
     ],
     "routes": [
        { "src": "/(.*)",
-        "dest": "/" }
+        "dest": "/" ,
+        "headers": {
+         "Access-Control-Allow-Origin": "*",
+         "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, Content-Length, Origin, User-Agent",
+         "Access-Control-Allow-Methods": "GET, POST, OPTIONS, HEAD, PATCH, PUT, DELETE"
+       }
+      }
     ]
  }
